@@ -46,8 +46,6 @@ namespace _3dpBurnerImage2Gcode
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.lblStatus = new System.Windows.Forms.ToolStripStatusLabel();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.tabPage2 = new System.Windows.Forms.TabPage();
@@ -72,8 +70,9 @@ namespace _3dpBurnerImage2Gcode
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.resetButton = new System.Windows.Forms.Button();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
-            this.cbDirthering = new System.Windows.Forms.ComboBox();
+            this.cbDithering = new System.Windows.Forms.ComboBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.lblGamma = new System.Windows.Forms.Label();
             this.tBarGamma = new System.Windows.Forms.TrackBar();
@@ -102,9 +101,11 @@ namespace _3dpBurnerImage2Gcode
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.panel1 = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.recentImagesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.viewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -114,6 +115,8 @@ namespace _3dpBurnerImage2Gcode
             this.imperialinToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.statusStrip1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -130,19 +133,9 @@ namespace _3dpBurnerImage2Gcode
             this.tabControl1.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // openFileDialog1
-            // 
-            this.openFileDialog1.FileName = "openFileDialog1";
-            this.openFileDialog1.Filter = "Image files (*.jpg, *.jpeg, *.jpe, *.jfif, *.png, *.bmp)| *.jpg; *.jpeg; *.jpe; *" +
-    ".jfif; *.png; *.bmp|All files(*.*)|*.*";
-            // 
-            // saveFileDialog1
-            // 
-            this.saveFileDialog1.FileName = "file.nc";
-            this.saveFileDialog1.Filter = "G-Code Files(*.CNC;*.NC;*.TAP;*.TXT)|*.CNC;*.NC;*.TAP;*.TXT|All files (*.*)|*.*";
             // 
             // lblStatus
             // 
@@ -387,6 +380,7 @@ namespace _3dpBurnerImage2Gcode
             // tabPage1
             // 
             this.tabPage1.BackColor = System.Drawing.SystemColors.Window;
+            this.tabPage1.Controls.Add(this.resetButton);
             this.tabPage1.Controls.Add(this.groupBox6);
             this.tabPage1.Controls.Add(this.groupBox5);
             this.tabPage1.Controls.Add(this.groupBox4);
@@ -399,9 +393,19 @@ namespace _3dpBurnerImage2Gcode
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Image";
             // 
+            // resetButton
+            // 
+            this.resetButton.Location = new System.Drawing.Point(104, 6);
+            this.resetButton.Name = "resetButton";
+            this.resetButton.Size = new System.Drawing.Size(79, 23);
+            this.resetButton.TabIndex = 28;
+            this.resetButton.Text = "Reset";
+            this.resetButton.UseVisualStyleBackColor = true;
+            this.resetButton.Click += new System.EventHandler(this.resetButton_Click);
+            // 
             // groupBox6
             // 
-            this.groupBox6.Controls.Add(this.cbDirthering);
+            this.groupBox6.Controls.Add(this.cbDithering);
             this.groupBox6.Location = new System.Drawing.Point(1, 368);
             this.groupBox6.Name = "groupBox6";
             this.groupBox6.Size = new System.Drawing.Size(187, 48);
@@ -409,18 +413,18 @@ namespace _3dpBurnerImage2Gcode
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Mode";
             // 
-            // cbDirthering
+            // cbDithering
             // 
-            this.cbDirthering.FormattingEnabled = true;
-            this.cbDirthering.Items.AddRange(new object[] {
+            this.cbDithering.FormattingEnabled = true;
+            this.cbDithering.Items.AddRange(new object[] {
             "GrayScale 8 bit",
             "Dirthering FS 1 bit"});
-            this.cbDirthering.Location = new System.Drawing.Point(9, 17);
-            this.cbDirthering.Name = "cbDirthering";
-            this.cbDirthering.Size = new System.Drawing.Size(169, 21);
-            this.cbDirthering.TabIndex = 14;
-            this.cbDirthering.Text = "GrayScale 8 bit";
-            this.cbDirthering.SelectedIndexChanged += new System.EventHandler(this.cbDirthering_SelectedIndexChanged);
+            this.cbDithering.Location = new System.Drawing.Point(9, 17);
+            this.cbDithering.Name = "cbDithering";
+            this.cbDithering.Size = new System.Drawing.Size(169, 21);
+            this.cbDithering.TabIndex = 14;
+            this.cbDithering.Text = "GrayScale 8 bit";
+            this.cbDithering.SelectedIndexChanged += new System.EventHandler(this.cbDithering_SelectedIndexChanged);
             // 
             // groupBox5
             // 
@@ -694,7 +698,7 @@ namespace _3dpBurnerImage2Gcode
             // 
             // btnCheckOrig
             // 
-            this.btnCheckOrig.Location = new System.Drawing.Point(51, 6);
+            this.btnCheckOrig.Location = new System.Drawing.Point(8, 6);
             this.btnCheckOrig.Name = "btnCheckOrig";
             this.btnCheckOrig.Size = new System.Drawing.Size(93, 23);
             this.btnCheckOrig.TabIndex = 1;
@@ -719,6 +723,7 @@ namespace _3dpBurnerImage2Gcode
             this.panel1.AutoScroll = true;
             this.panel1.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.panel1.Controls.Add(this.pictureBox1);
+            this.panel1.Controls.Add(this.pictureBox2);
             this.panel1.Location = new System.Drawing.Point(1, 25);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(450, 450);
@@ -734,6 +739,17 @@ namespace _3dpBurnerImage2Gcode
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.pictureBox2.Location = new System.Drawing.Point(1, 1);
+            this.pictureBox2.Margin = new System.Windows.Forms.Padding(0);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(450, 450);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pictureBox2.TabIndex = 2;
+            this.pictureBox2.TabStop = false;
             // 
             // menuStrip1
             // 
@@ -753,6 +769,7 @@ namespace _3dpBurnerImage2Gcode
             // 
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.openToolStripMenuItem,
+            this.recentImagesToolStripMenuItem,
             this.toolStripMenuItem1,
             this.exitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
@@ -762,19 +779,25 @@ namespace _3dpBurnerImage2Gcode
             // openToolStripMenuItem
             // 
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.openToolStripMenuItem.Text = "Open...";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
+            // 
+            // recentImagesToolStripMenuItem
+            // 
+            this.recentImagesToolStripMenuItem.Name = "recentImagesToolStripMenuItem";
+            this.recentImagesToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.recentImagesToolStripMenuItem.Text = "Recent Images";
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(109, 6);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(149, 6);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -834,6 +857,18 @@ namespace _3dpBurnerImage2Gcode
             this.aboutToolStripMenuItem1.Text = "About";
             this.aboutToolStripMenuItem1.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.Filter = "Image files (*.jpg, *.jpeg, *.jpe, *.jfif, *.png, *.bmp)| *.jpg; *.jpeg; *.jpe; *" +
+    ".jfif; *.png; *.bmp|All files(*.*)|*.*";
+            this.openFileDialog1.InitialDirectory = global::_3dpBurnerImage2Gcode.Properties.Settings.Default.imagePath;
+            // 
+            // saveFileDialog1
+            // 
+            this.saveFileDialog1.Filter = "G-Code Files(*.CNC;*.NC;*.TAP;*.TXT;*.gcode)|*.CNC;*.NC;*.TAP;*.TXT;*.gcode|All f" +
+    "iles (*.*)|*.*";
+            this.saveFileDialog1.InitialDirectory = global::_3dpBurnerImage2Gcode.Properties.Settings.Default.outputPath;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -876,6 +911,7 @@ namespace _3dpBurnerImage2Gcode
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -909,7 +945,7 @@ namespace _3dpBurnerImage2Gcode
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.GroupBox groupBox6;
-        private System.Windows.Forms.ComboBox cbDirthering;
+        private System.Windows.Forms.ComboBox cbDithering;
         private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.Label lblGamma;
         private System.Windows.Forms.TrackBar tBarGamma;
@@ -953,6 +989,9 @@ namespace _3dpBurnerImage2Gcode
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
         private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.ToolStripMenuItem recentImagesToolStripMenuItem;
+        private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.Button resetButton;
     }
 }
 
