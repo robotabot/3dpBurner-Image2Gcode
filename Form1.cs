@@ -137,7 +137,17 @@ namespace _3dpBurnerImage2Gcode
             }
         }
 
-        // Paths for loading and saving
+        // On form load
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            Text = "3dpBurner Image2Gcode " + ver;
+            lblStatus.Text = "Done";
+            loadSettings();
+
+            autoZoomToolStripMenuItem_Click(this, null); // Set preview zoom mode
+
+            refreshRecentImagesMenu();
+        }
 
         // Interpolate a 8 bit grayscale value (0-255) between min,max
         // Changed to decimal for use with other controllers
@@ -516,18 +526,6 @@ namespace _3dpBurnerImage2Gcode
                 if (adjustedImage == null) return; // if no image, do nothing
                 userAdjust();
             }
-        }
-
-        // On form load
-        private void Form1_Load(object sender, EventArgs e)
-        {
-            Text = "3dpBurner Image2Gcode " + ver;
-            lblStatus.Text = "Done";
-            loadSettings();
-
-            autoZoomToolStripMenuItem_Click(this, null); // Set preview zoom mode
-
-            refreshRecentImagesMenu();
         }
 
         // Width confirmed by user
